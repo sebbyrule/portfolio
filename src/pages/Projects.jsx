@@ -31,7 +31,18 @@ export default function Projects() {
         return res.json();
       })
       .then((data) => {
-        setRepos(data);
+        // Add demo image URLs for sample projects (replace with your own images as needed)
+        const demoImages = {
+          "report-generator": "https://placehold.co/300x180?text=Report+Generator",
+          "iot-dashboard": "https://placehold.co/300x180?text=IoT+Dashboard",
+          "docker-nginx": "https://placehold.co/300x180?text=Docker+Nginx",
+        };
+        setRepos(
+          data.map((repo) => ({
+            ...repo,
+            demoImg: demoImages[repo.name] || "https://placehold.co/300x180?text=Project+Demo",
+          }))
+        );
         setLoading(false);
       })
       .catch((err) => {
@@ -91,7 +102,8 @@ export default function Projects() {
       {error && <p className="text-center text-red-500">{error}</p>}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredRepos.map((repo) => (
-          <div key={repo.id} className="border rounded-xl shadow-lg bg-white p-6 flex flex-col justify-between hover:scale-[1.03] transition">
+          <div key={repo.id} className="border rounded-xl shadow-lg bg-white p-6 flex flex-col justify-between hover:scale-[1.03] transition animate-fadein">
+            <img src={repo.demoImg} alt={repo.name + " demo"} className="rounded mb-2 w-full h-36 object-cover" />
             <div className="flex items-center gap-3 mb-2">
               {repo.language && languageIcons[repo.language] && (
                 <img src={languageIcons[repo.language]} alt={repo.language} className="w-7 h-7" title={repo.language} />
@@ -110,6 +122,7 @@ export default function Projects() {
           </div>
         ))}
       </div>
+
     </div>
   );
 }
