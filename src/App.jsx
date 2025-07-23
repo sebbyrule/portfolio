@@ -10,14 +10,14 @@ export default function App() {
         <nav className="p-4 shadow-md bg-white flex justify-between">
           <h1 className="text-xl font-bold">My Portfolio</h1>
           <div className="space-x-4">
-            <Link to="/" className="hover:text-blue-500">Profile</Link>
+            <Link to="/portfolio" className="hover:text-blue-500">Profile</Link>
             <Link to="/projects" className="hover:text-blue-500">Projects</Link>
             <Link to="/blog" className="hover:text-blue-500">Blog</Link>
           </div>
         </nav>
         <main className="p-6">
           <Routes>
-            <Route path="/" element={<Profile />} />
+            <Route path="/portfolio" element={<Profile />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/blog" element={<Blog />} />
           </Routes>
