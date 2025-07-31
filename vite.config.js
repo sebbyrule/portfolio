@@ -11,6 +11,6 @@ export default defineConfig({
     hmr: {
       overlay: false
     }
-  }
-  
+  },
+  base: '/portfolio/', // Use your repo name here  
 });
