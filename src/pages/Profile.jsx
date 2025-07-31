@@ -43,21 +43,30 @@ export default function Profile() {
         );
         setLoadingRepos(false);
       });
-    // Blog posts are static with excerpts
-    setPosts([
-      {
-        filename: "second-post.md",
-        title: "Docker & Nginx Adventures",
-        date: "2025-07-24",
-        excerpt: "A quick guide to setting up Docker containers with Nginx for web hosting and reverse proxy."
-      },
-      {
-        filename: "first-post.md",
-        title: "Welcome to My Blog",
-        date: "2025-07-01",
-        excerpt: "Kickstarting my portfolio blog with a look at my interests and future plans."
-      },
-    ]);
+    // Dynamically import blog posts for preview
+    const importPosts = async () => {
+      try {
+        const modules = import.meta.glob('../posts/*.mdx', { as: 'raw' });
+        const fm = (await import('front-matter')).default;
+        const postPromises = Object.entries(modules).map(async ([path, resolver]) => {
+          const raw = await resolver();
+          const { attributes } = fm(raw);
+          return {
+            filename: path.split('/').pop(),
+            ...attributes,
+          };
+        });
+        let loadedPosts = await Promise.all(postPromises);
+        loadedPosts = loadedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        setPosts(loadedPosts);
+        if (loadedPosts.length === 0) {
+          console.warn('No blog posts found in ./src/posts/*.mdx');
+        }
+      } catch (err) {
+        console.error('Error loading blog posts:', err);
+      }
+    };
+    importPosts();
   }, []);
 
   return (
@@ -65,7 +74,7 @@ export default function Profile() {
       {/* Home/Intro Section */}
       <section className="flex flex-col items-center text-center">
         <img
-          src="https://avatars.githubusercontent.com/u/your-github-id?v=4"
+          src="https://avatars.githubusercontent.com/u/60407118?v=4"
           alt="Sebastian Avatar"
           className="w-28 h-28 rounded-full shadow-lg mb-6 border-4 border-blue-200"
         />
@@ -86,7 +95,7 @@ export default function Profile() {
 
       {/* Skills/Tech Stack Section */}
       <section className="bg-white rounded-xl shadow p-6 animate-fadein">
-        <h3 className="text-2xl font-bold mb-4 text-blue-800">Skills & Tech Stack</h3>
+        <h3 className="text-2xl font-bold mb-4 text-blue-800 text-center">Skills & Tech Stack</h3>
         <div className="flex flex-wrap gap-4 justify-center">
           <div className="flex flex-col items-center">
             <img src={languageIcons["Python"]} alt="Python" className="w-10 h-10 mb-1" />
@@ -152,11 +161,15 @@ export default function Profile() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {posts.slice(0, 3).map((post) => (
-            <div key={post.filename} className="border rounded-lg shadow p-4 bg-gray-50 transition-transform duration-300 hover:scale-[1.03] animate-fadein">
+            <Link
+              key={post.filename}
+              to={`/blog/${post.filename.replace('.mdx', '')}`}
+              className="border rounded-lg shadow p-4 bg-gray-50 transition-transform duration-300 hover:scale-[1.03] animate-fadein block"
+            >
               <h4 className="text-lg font-semibold text-blue-700 mb-1">{post.title}</h4>
               <span className="text-xs text-gray-500">Published on {post.date}</span>
               <p className="text-gray-600 text-sm mt-2">{post.excerpt}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

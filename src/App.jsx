@@ -20,6 +20,7 @@ export default function App() {
             <Route path="/portfolio" element={<Profile />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:postname" element={<Blog />} />
           </Routes>
         </main>
       </div>
