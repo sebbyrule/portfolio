@@ -1,4 +1,4 @@
-import{j as n}from"./index-855f4ff1.js";function t(r){const e={h1:"h1",h2:"h2",hr:"hr",li:"li",p:"p",ul:"ul",...r.components};return n.jsxs(n.Fragment,{children:[n.jsx(e.hr,{}),`
+import{j as n}from"./index-8c422cad.js";function t(r){const e={h1:"h1",h2:"h2",hr:"hr",li:"li",p:"p",ul:"ul",...r.components};return n.jsxs(n.Fragment,{children:[n.jsx(e.hr,{}),`
 `,n.jsx(e.h2,{children:`title: "Docker & Nginx Adventures"\r
 date: "2025-07-24"\r
 excerpt: "A quick guide to setting up Docker containers with Nginx for web hosting and reverse proxy."`}),`
