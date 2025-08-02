@@ -1,4 +1,4 @@
-import{j as n}from"./index-855f4ff1.js";function r(t){const e={h1:"h1",h2:"h2",hr:"hr",li:"li",p:"p",strong:"strong",ul:"ul",...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(e.hr,{}),`
+import{j as n}from"./index-8c422cad.js";function r(t){const e={h1:"h1",h2:"h2",hr:"hr",li:"li",p:"p",strong:"strong",ul:"ul",...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(e.hr,{}),`
 `,n.jsx(e.h2,{children:`title: "Welcome to My Blog"\r
 date: "2025-07-01"\r
 excerpt: "Kickstarting my portfolio blog with a look at my interests and future plans."`}),`

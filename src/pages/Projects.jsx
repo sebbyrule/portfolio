@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import useDocumentTitle from "../hooks/useDocumentTitle";
+import SkeletonCard from "../components/SkeletonCard";
 
 const languageIcons = {
   "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
@@ -18,6 +20,7 @@ const languageIcons = {
 };
 
 export default function Projects() {
+  useDocumentTitle("Projects - Sebastian's Portfolio");
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -76,7 +79,7 @@ export default function Projects() {
         <label className="flex items-center gap-2">
           <span className="font-medium">Filter:</span>
           <select
-            className="border rounded px-2 py-1"
+            className="border rounded px-2 py-1 button-hover-effect"
             value={filterLang}
             onChange={(e) => setFilterLang(e.target.value)}
           >
@@ -89,7 +92,7 @@ export default function Projects() {
         <label className="flex items-center gap-2">
           <span className="font-medium">Sort:</span>
           <select
-            className="border rounded px-2 py-1"
+            className="border rounded px-2 py-1 button-hover-effect"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
@@ -98,11 +101,20 @@ export default function Projects() {
           </select>
         </label>
       </div>
-      {loading && <p className="text-center">Loading projects...</p>}
+      {loading && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+        </div>
+      )}
       {error && <p className="text-center text-red-500">{error}</p>}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredRepos.map((repo) => (
-          <div key={repo.id} className="border rounded-xl shadow-lg bg-white p-6 flex flex-col justify-between hover:scale-[1.03] transition animate-fadein">
+          <div key={repo.id} className="border rounded-xl shadow-lg bg-white p-6 flex flex-col justify-between animate-fadein card-hover-effect">
             <img src={repo.demoImg} alt={repo.name + " demo"} className="rounded mb-2 w-full h-36 object-cover" />
             <div className="flex items-center gap-3 mb-2">
               {repo.language && languageIcons[repo.language] && (
@@ -117,7 +129,7 @@ export default function Projects() {
             <p className="text-gray-700 mb-4 min-h-[48px]">{repo.description || "No description provided."}</p>
             <div className="flex items-center justify-between mt-2">
               <span className="text-xs text-gray-500">Last updated: {new Date(repo.updated_at).toLocaleDateString()}</span>
-              <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 font-medium hover:underline">GitHub ↗</a>
+              <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 font-medium hover:underline button-hover-effect">GitHub ↗</a>
             </div>
           </div>
         ))}
