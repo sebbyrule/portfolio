@@ -31,19 +31,17 @@ export default function Profile() {
   useEffect(() => {
     fetch("https://api.github.com/users/sebbyrule/repos?sort=updated&per_page=3")
       .then((res) => res.json())
-      .then((data) => {
-        // Add demo image URLs for sample projects (replace with your own images as needed)
-        const demoImages = {
-          "report-generator": "https://placehold.co/300x180?text=Report+Generator",
-          "iot-dashboard": "https://placehold.co/300x180?text=IoT+Dashboard",
-          "docker-nginx": "https://placehold.co/300x180?text=Docker+Nginx",
-        };
-        setRepos(
-          data.map((repo) => ({
+      .then(async (data) => {
+        // Get repository social preview images from GitHub
+        const reposWithImages = await Promise.all(data.map(async (repo) => {
+          // Try to fetch the social preview image
+          const imageUrl = `https://opengraph.githubassets.com/1/${repo.owner.login}/${repo.name}`;
+          return {
             ...repo,
-            demoImg: demoImages[repo.name] || "https://placehold.co/300x180?text=Project+Demo",
-          }))
-        );
+            demoImg: imageUrl,
+          };
+        }));
+        setRepos(reposWithImages);
         setLoadingRepos(false);
       });
     // Dynamically import blog posts for preview

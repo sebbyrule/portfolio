@@ -1,0 +1,73 @@
+---
+title: Need a Blog - Vibe code one
+date: 2025-08-02
+excerpt: Vibe coding your portfolio site
+---
+If you're in the tech space, you know how important it is to keep learning and building. After finishing school, I found myself in the tough spot of being unable to find a job, despite my qualifications. Instead of getting discouraged, I decided to take action and create my own corner of the internet.
+
+This blog is the result! It's now a platform where I can post my projects, document new things I'm learning, and share my experiences with all of you. For me, writing is one of the best ways to organize my thoughts, and honestly, the challenge of learning how to build and deploy a website from the ground up just sounded like a lot of fun.
+
+### Why I Chose GitHub Pages for Hosting
+
+When it came to deciding where this website would live, the choice was surprisingly simple. I went with GitHub Pages for a few key reasons:
+
+- **It's free!** Did I mention I don't have a job? The zero-cost aspect was a huge selling point.
+- **It’s simple and effective.** My site at the moment is not overly complex, so it doesn't need the heavy-duty features or cost associated with a private server (VPS).
+- **It’s future-proof.** When I'm ready to buy a custom domain and potentially move to another host, it will be so much easier to have the site already built rather than having to start from scratch.
+
+### My AI-Powered Workflow: How I Built This Site
+
+Now for the really exciting part. I didn't just build this site; I built it with the help of an AI coding assistant. It's a new and incredibly powerful way to work, and here's the exact procedure I followed.
+
+1. **Pick Your Tools.** First, I chose my software stack. For me, the combination of VS Code and GitHub Copilot was the perfect pairing.
+2. **Define the Rules for Your AI.** This is a critical step! I created a set of rules and best practices for Copilot to follow and saved them right in the project folder so the agent could easily access them. This helps guide the AI to produce code that matches your standards. This uses up context for the Agent, do your best to keep the information brief, descriptive, and necessary. This document along with the other ones can be made by an LLM (this one was)!
+```markdown
+# Portfolio Project
+
+## 🎯 Project Overview
+
+### Core Technology Stack
+- **React**:
+- **React Router**:
+- **MDX**:
+- **Tailwind**:
+
+## 🔄 Project Awareness & Context
+- **Always read `SDD.md`** at the start of a new conversation to understand the project's architecture, goals, style, and constraints.
+- **Check `TASKS.md`** before starting a new task. If the task isn't listed, add it with a brief description and today's date.
+- **Remember to update `TASKS.md`** after completing your tasks, move all finished tasks to the ## ✅ Completed Tasks section.
+- **Use consistent naming conventions, file structure, and architecture patterns** as described in `SDD.md`.
+
+## 🧱 Code Structure & Modularity
+
+## ✅ Task Completion
+- **Mark completed tasks in `TASKS.md`** immediately after finishing them.
+- After completing a task, move it to the ## ✅ Completed Tasks section.
+- Add new sub-tasks or TODOs discovered during development to `TASKS.md` under a "Discovered During Work" section.
+```
+3. **Create Your Project Blueprints.** I created a Software Design Document (SDD) that outlined all the project requirements. I also made a separate task file with a to-do list for the project. In my rules for Copilot, I made sure to instruct it to reference these files constantly. This document is not only useful for the LLM but for your benefit. Use this to plan and think through what you want your app to do and how to do it.
+```markdown
+# Portfolio project SDD
+## 1. Introduction & Overview
+**Purpose:**
+
+## 2. Goals & Objectives
+
+## 3. Software Requirements
+
+## 4. Data Schemas
+
+## 5. Folder Structure
+
+## 6. Development Process
+```
+4. **Engage the Cyber-Magic!** With the prep work done, I started the agent and watched the magic happen. It was amazing to see the code come to life based on the documents and rules I provided.
+
+### Tips for Getting Better Results with Your AI Assistant
+
+Working with an AI is a bit of an art and a science. Here are some tips I learned along the way that made a huge difference.
+
+- **Use the Right Words.** The more accurate and specific your vocabulary is, the better the AI will understand the context. This leads to results that are much closer to your expectations.
+- **Learn from Others and Experiment.** Look for design documents and AI agent rules that other people have shared. Try them out and see what works for you! Using AI to build software is a new frontier, so be adventurous and try different techniques.
+- **Test and Commit Often.** This is crucial. Use a source control management tool like Git and commit your changes after each new feature is built. If the AI makes a drastic change and breaks something, you'll have a stable version to fall back on.
+
